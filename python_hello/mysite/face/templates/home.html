@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Foundation | Welcome</title>
+    <title>Face Detection | Welcome</title>
     <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
   </head>
   <body>
@@ -29,19 +29,27 @@
     <!-- We can now combine rows and columns when there's only one column in that row -->
     <div class="row medium-8 large-7 columns">
       <div class="blog-post">
-        <h3>Upload Your image </h3>
-        <form action="/action_page.php">
-          <input type="file" id="myFile" name="filename">
-          <input type="submit">
+        {% block content %}
+        <h2>Upload</h2>
+        <form action="upload" method="post" enctype="multipart/form-data"> 
+          {% csrf_token %}
+          <input type="file" name="document">
+          <button type="submit">Upload picture</button>
         </form>
-        <img class="thumbnail" src="https://placehold.it/850x350">
+        {% endblock %}
+
+        <p>&nbsp;</p>
+
+        <h2>Detect face</h2>
+        <button type="button">Detect face</button>
+        <!-- <img class="thumbnail" src="https://placehold.it/850x350">
         <p></p>
         <div class="callout">
           <ul class="menu simple">
             <li><a href="#"></a></li>
             <li><a href="#"></a></li>
           </ul>
-        </div>
+        </div> -->
       </div>
 
      

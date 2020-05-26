@@ -1,19 +1,31 @@
 from django.shortcuts import render
-""" from PIL import Image
+from django.views.generic import TemplateView
+from django.core.files.storage import FileSystemStorage
+from PIL import Image
 import face_recognition
- """
+
+global uploaded_file
+
 def home(request):
 
     return render(request, 'home.html')
 # Create your views here.
 
-def face_detect(request):
-    
-    return 0
 
-""" 
+def upload(request):
+    if request.method == 'POST':
+        uploaded_file = request.FILES['document']
+        fs = FileSystemStorage()
+        fs.save(uploaded_file.name,uploaded_file)
+        print(uploaded_file.name)
+
+    return render(request, 'home.html')
+
+
+
+def face_detect(request, uploaded_file):
 # Load the jpg file into a numpy array
-    image = face_recognition.load_image_file("face.jpg")
+    image = face_recognition.load_image_file(uploaded_file.name)
 
 # Find all the faces in the image using the default HOG-based model.
 # This method is fairly accurate, but not as accurate as the CNN model and not GPU accelerated.
@@ -33,4 +45,6 @@ def face_detect(request):
         pil_image = Image.fromarray(face_image)
         pil_image.show()
 
-    #wykrywaie twarzy """
+    return render(request, 'home.html')
+
+
