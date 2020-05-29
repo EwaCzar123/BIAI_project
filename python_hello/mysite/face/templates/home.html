@@ -25,7 +25,6 @@
         <h2 class="subheader">Detecting faces in pictures </h2>
       </div>
     </div>
-
     <!-- We can now combine rows and columns when there's only one column in that row -->
     <div class="row medium-8 large-7 columns">
       <div class="blog-post">
@@ -36,12 +35,21 @@
           <input type="file" name="document">
           <button type="submit">Upload picture</button>
         </form>
+        <img src="media/{{ file_name }}"/>
         {% endblock %}
 
         <p>&nbsp;</p>
 
         <h2>Detect face</h2>
-        <button type="button">Detect face</button>
+        <form action="detect" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <button type="submit">Detect face</button>
+          
+        </form>
+        <img src="media/{{ face }}"/>
+
+        <p>&nbsp;</p>
+
         <!-- <img class="thumbnail" src="https://placehold.it/850x350">
         <p></p>
         <div class="callout">
