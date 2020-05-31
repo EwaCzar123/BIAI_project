@@ -30,12 +30,18 @@
       <div class="blog-post">
         {% block content %}
         <h2>Upload</h2>
-        <form action="upload" method="post" enctype="multipart/form-data"> 
+         <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
-          <input type="file" name="document">
-          <button type="submit">Upload picture</button>
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary">Upload</button>
         </form>
-        <img src="media/{{ file_name }}"/>
+        <tr>
+          <td>
+          {% for pic in pics %}
+            <img src="/media/{{ pic.photo }}">
+          {% endfor %} 
+        </td>
+        </tr>
         {% endblock %}
 
         <p>&nbsp;</p>
@@ -46,8 +52,8 @@
           <button type="submit">Detect face</button>
           
         </form>
-        <img src="media/{{ face }}"/>
-
+        <!-- <img src="media/{{ face  }}"/>
+ -->
         <p>&nbsp;</p>
 
         <!-- <img class="thumbnail" src="https://placehold.it/850x350">
