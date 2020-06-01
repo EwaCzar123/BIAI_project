@@ -30,15 +30,38 @@
     <div class="row medium-8 large-7 columns">
       <div class="blog-post">
         {% block content %}
-        <h2>Upload</h2>
-        <form action="upload" method="post" enctype="multipart/form-data"> 
+        <table> 
+          <tr>
+            <td><h2>Upload</h2></td><td><h2>Detect faces</h2></td></tr> 
+            <tr><td><form action="upload" method="post" enctype="multipart/form-data"> 
+              {% csrf_token %}
+              <input type="file" name="document">
+              <button type="submit">Upload picture</button>
+            </form></td>
+            <td>
+              <form action="detect" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <button type="submit">Detect face</button>
+                
+              </form>
+            </td>
+
+          </tr>
+        
+        </table>
+        <img src="media/{{ file_name }}" />
+
+
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+       <!--  <form action="upload" method="post" enctype="multipart/form-data"> 
           {% csrf_token %}
           <input type="file" name="document">
           <button type="submit">Upload picture</button>
         </form>
         <img src="media/{{ file_name }}" />
-        {% endblock %}
-       
+        {% endblock %} -->
+      <!--  
         <p>&nbsp;</p>
         <h2>Detect face</h2>
         <form action="detect" method="post" enctype="multipart/form-data">
@@ -46,8 +69,8 @@
           <button type="submit">Detect face</button>
           
         </form>
-        <img src="media/{{ face }}"/>
-
+        <img src="media/{{ face }}"/> -->
+ -->
         <p>&nbsp;</p>
         <p>&nbsp;</p>
 
